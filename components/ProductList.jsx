@@ -32,6 +32,15 @@ const ProductList = () => {
                     </li>
                 </ul>
             ))}
+            <h2>Carrello:</h2>
+            {addedProducts.length != 0 && (
+                addedProducts.map(add => (
+                    <ul>
+                        <li>{add.name} - {add.price} - {add.quantity}</li>
+                    </ul>
+                ))
+            )
+            }
         </div>
     )
 }
