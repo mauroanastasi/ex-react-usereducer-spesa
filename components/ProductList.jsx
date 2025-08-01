@@ -31,6 +31,10 @@ const ProductList = () => {
         )
     }
 
+    const removeFromCart = (product) => {
+        setAddedProducts(curr => curr.filter(p => p.name !== product.name))
+    }
+
     const totalPay = addedProducts.reduce((acc, p) =>
         acc + (p.price * p.quantity)
         , 0)
@@ -47,12 +51,12 @@ const ProductList = () => {
             {addedProducts.length != 0 && (
                 addedProducts.map(add => (
                     <ul>
-                        <li>{add.name} - {add.price} - {add.quantity}</li>
+                        <li>{add.name} - {add.price} - {add.quantity} <button onClick={() => removeFromCart(add)} >Rimuovi dal Carrello</button></li>
                     </ul>
                 ))
             )
             }
-            <h3>Totale da pagare: {totalPay}  </h3>
+            <h3>Totale da pagare: {totalPay.toFixed(2)}  </h3>
         </div>
 
     )
