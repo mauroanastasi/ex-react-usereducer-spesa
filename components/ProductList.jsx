@@ -13,15 +13,24 @@ const ProductList = () => {
         { name: 'Pasta', price: 0.7 },
     ];
 
+    const updateProductQuantity = (name, quantity) => {
+        setAddedProducts(curr =>
+            curr.map(p => p.name === name ? { ...p, quantity } : p)
+        )
+    }
+
     function addToCart(product) {
-        let esiste = addedProducts.some(p =>
+        let esiste = addedProducts.find(p =>
             p.name === product.name
         )
         if (esiste) {
+            updateProductQuantity(esiste.name, esiste.quantity + 1)
             return
-        } setAddedProducts(now => [...now, { ...product, quantity: 1 }]
+        } setAddedProducts(now =>
+            [...now, { ...product, quantity: 1 }]
         )
     }
+
 
 
     return (
