@@ -31,7 +31,9 @@ const ProductList = () => {
         )
     }
 
-
+    const totalPay = addedProducts.reduce((acc, p) =>
+        acc + (p.price * p.quantity)
+        , 0)
 
     return (
         <div>
@@ -50,7 +52,9 @@ const ProductList = () => {
                 ))
             )
             }
+            <h3>Totale da pagare: {totalPay}  </h3>
         </div>
+
     )
 }
 
