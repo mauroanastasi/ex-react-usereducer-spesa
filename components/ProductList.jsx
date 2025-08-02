@@ -39,6 +39,13 @@ const ProductList = () => {
         acc + (p.price * p.quantity)
         , 0)
 
+
+    const totParziale = (ProdParziale) => {
+        const primoParziale = addedProducts.filter(p => p.name === ProdParziale.name)
+        const ultimoParziale = primoParziale.reduce((acc, p) => acc + (p.price * p.quantity), 0)
+        return ultimoParziale.toFixed(2)
+    }
+
     return (
         <div>
             {products.map((p, i) => (
@@ -52,11 +59,12 @@ const ProductList = () => {
                 addedProducts.map(add => (
                     <ul>
                         <li>{add.name} - {add.price} - {add.quantity} <button onClick={() => removeFromCart(add)} >Rimuovi dal Carrello</button></li>
+                        - tot Parziale : {totParziale(add)} €
                     </ul>
                 ))
             )
             }
-            <h3>Totale da pagare: {totalPay.toFixed(2)}  </h3>
+            <h3>Totale da pagare: {totalPay.toFixed(2)} €  </h3>
         </div>
 
     )
